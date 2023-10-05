@@ -75,6 +75,16 @@ const Home = () => {
           </Flex>
         </Flex>
       </Flex>
+      <styled.p fontSize="sm" color="slate.500" mt={8}>
+        This site was built by John Hegele as a side project. Check it out on{" "}
+        <Link
+          href="https://github.com/jhegele/tableau-embedded-tinkering"
+          target="_blank"
+        >
+          GitHub
+        </Link>
+        .
+      </styled.p>
     </Flex>
   );
 };
