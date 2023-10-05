@@ -14,7 +14,6 @@ const Home = () => {
         <styled.p fontSize="2xl" fontWeight="bold" color="slate.600" flex={1}>
           Simple Embedding
         </styled.p>
-        <Link href="/improved">Go to Improved</Link>
       </Flex>
       <Flex w="2/3" bg="slate.100" p={4} borderRadius="md" mb={4}>
         <styled.p fontSize="normal" color="slate.700">
