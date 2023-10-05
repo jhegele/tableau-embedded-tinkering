@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Tableau } from "@/components/tableau";
 import { TableauViz } from "https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js";
 import { Box, Container, Flex, styled } from "#/jsx";
@@ -9,6 +9,7 @@ import { css } from "#/css";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Collapsible } from "@/components/collapsible";
 
 const schemaControls = z.object({
   startDate: z.coerce.date(),
@@ -26,6 +27,7 @@ const Advanced = () => {
   const vizSalesSummary = useRef<TableauViz | null>(null);
   const vizProfitRatioSummary = useRef<TableauViz | null>(null);
   const viz = useRef<TableauViz | null>(null);
+  const [showVizzes, setShowVizzes] = useState<boolean>(true);
 
   const handleOnFirstInteractive = async (
     interactiveViz: TableauViz,
@@ -186,12 +188,51 @@ const Advanced = () => {
                 })}
               />
             </Flex>
+            <Flex direction="column" w="full">
+              <styled.label
+                htmlFor="region"
+                fontSize="sm"
+                fontWeight="semibold"
+                color="slate.500"
+              >
+                Show Vizzes
+              </styled.label>
+              <styled.input
+                type="checkbox"
+                id="region"
+                fontSize="normal"
+                border="1px solid token(colors.slate.600)"
+                borderRadius="md"
+                px={2}
+                py={1}
+                w="fit-content"
+                outline="none"
+                _focus={{
+                  outline: "none",
+                }}
+                _hover={{
+                  border: "none",
+                }}
+                checked={showVizzes}
+                onChange={({ target: { checked } }) => setShowVizzes(checked)}
+              />
+            </Flex>
           </Flex>
         </Flex>
         <Flex direction="column" gap={8}>
           <Flex flex={1} direction="column">
             <Container w="full">
-              <Box w="275px" h="275px" maxH="275px" float="right" p={2}>
+              <Collapsible
+                open={showVizzes}
+                animateToX="right"
+                removeOnExit
+                className={css({
+                  w: "275px",
+                  h: "275px",
+                  float: "right",
+                  p: 2,
+                })}
+              >
                 <Tableau
                   src="https://public.tableau.com/shared/K3ZPJF37X?:display_count=n&:origin=viz_share_link"
                   hideTabs
@@ -204,7 +245,7 @@ const Advanced = () => {
                   })}
                   id="tableauViz_SalesSummary"
                 />
-              </Box>
+              </Collapsible>
               <styled.p whiteSpace="pre-wrap">
                 <styled.span
                   fontSize="xl"
@@ -251,7 +292,17 @@ const Advanced = () => {
           </Flex>
           <Flex flex={1} direction="column">
             <Container w="full">
-              <Box w="275px" h="275px" maxH="275px" float="left" p={2}>
+              <Collapsible
+                open={showVizzes}
+                animateToX="left"
+                removeOnExit
+                className={css({
+                  w: "275px",
+                  h: "275px",
+                  float: "left",
+                  p: 2,
+                })}
+              >
                 <Tableau
                   src="https://public.tableau.com/views/Superstore-EmbedDemo-AdvProfitRatioTile/Advanced-ProfitRatioTile?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link"
                   hideTabs
@@ -264,7 +315,7 @@ const Advanced = () => {
                   })}
                   id="tableauViz_ProfitRatioSummary"
                 />
-              </Box>
+              </Collapsible>
               <styled.p whiteSpace="pre-wrap">
                 <styled.span
                   fontSize="xl"
