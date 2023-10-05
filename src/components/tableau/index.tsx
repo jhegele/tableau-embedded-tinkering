@@ -1,1 +1,1 @@
-export * from "./Tableau";
+export * from "./ssrWrapper";

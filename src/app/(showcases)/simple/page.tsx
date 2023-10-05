@@ -1,13 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Tableau } from "@/components/tableau";
 import { Flex, styled } from "#/jsx";
-import { DeviceType } from "https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js";
 import { css } from "#/css";
-import Link from "next/link";
 
 const Home = () => {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) return null;
+
   return (
     <Flex direction="column" w="full" alignItems="center">
       <Flex w="2/3" p={4} alignItems="center">
@@ -28,7 +33,6 @@ const Home = () => {
           src="https://public.tableau.com/views/Superstore-EmbedDemo/SuperDescriptive?:language=en-US&:display_count=n&:origin=viz_share_link"
           hideTabs
           width="100%"
-          device={DeviceType.Desktop}
           className={css({ w: "full" })}
         />
       </Flex>

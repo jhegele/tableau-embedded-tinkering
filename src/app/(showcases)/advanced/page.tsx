@@ -3,8 +3,7 @@
 import React, { useRef, useState } from "react";
 import { Tableau } from "@/components/tableau";
 import { TableauViz } from "https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js";
-import { Box, Container, Flex, styled } from "#/jsx";
-import Link from "next/link";
+import { Container, Flex, styled } from "#/jsx";
 import { css } from "#/css";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
