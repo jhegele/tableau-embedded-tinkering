@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Tableau } from "@/components/tableau";
 import { TableauViz } from "https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js";
 import { Flex, styled } from "#/jsx";
 import Link from "next/link";

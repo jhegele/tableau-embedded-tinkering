@@ -50,3 +50,5 @@ export const Tableau: React.FC<TableauProps> = ({
 
   return <div id="tableauViz" ref={vizDivRef} {...divProps}></div>;
 };
+
+export default Tableau;
